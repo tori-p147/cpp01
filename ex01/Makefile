@@ -10,8 +10,7 @@ RM = rm -rf
 INCLUDES  = -I$(INC_DIR)
 
 SRC_FILES = Zombie.cpp \
-		newZombie.cpp \
-		randomChamp.cpp \
+		zombieHorde.cpp \
 		main.cpp \
 		
 SOURCES = $(addprefix $(SRC_DIR)/, $(SRC_FILES))

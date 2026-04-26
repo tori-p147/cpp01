@@ -1,4 +1,4 @@
-NAME = zombie
+NAME = humans
 
 SRC_DIR = src
 INC_DIR = includes
@@ -9,9 +9,9 @@ CXXFLAGS    = -Wall -Wextra -Werror -std=c++98 -pedantic
 RM = rm -rf
 INCLUDES  = -I$(INC_DIR)
 
-SRC_FILES = Zombie.cpp \
-		newZombie.cpp \
-		randomChamp.cpp \
+SRC_FILES = HumanA.cpp \
+		HumanB.cpp \
+		Weapon.cpp \
 		main.cpp \
 		
 SOURCES = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
