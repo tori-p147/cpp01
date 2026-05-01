@@ -1,41 +1,31 @@
-#include <replacer.hpp>
+#include <Replacer.hpp>
 
-bool	fileExist(char *filename)
+static int printErrorAndExit(std::string msg)
 {
-	std::fstream filein(filename);
-	return (filein.is_open());
+	std::cerr << msg << std::endl;
+	return (EXIT_FAILURE);
 }
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	char	*filename;
-	char	*s1;
-	char	*s2;
-	int		counter;
-	size_t	pos;
-	size_t	len;
+	char *s1;
+	char *s2;
+	size_t pos;
+	size_t len;
 
 	if (argc != 4)
-	{
-		std::cerr << "Invalid argumants!" << std::endl;
-		return (1);
-	}
-	filename = argv[1];
+		return (printErrorAndExit("Invalid argumants!"));
 	s1 = argv[2];
 	s2 = argv[3];
-	std::ifstream filein(filename);
-	if (!fileExist(filename))
-	{
-		std::cerr << "File not exist!" << std::endl;
-		return (1);
-	}
+	std::ifstream filein(argv[1]);
+	if (!filein.is_open())
+		return (printErrorAndExit("File not exist!"));
 	pos = 0;
 	len = std::strlen(s1);
-	std::string filenameStr = "";
-	filenameStr.append(filename).append(".replace");
-	std::ofstream fileout(filenameStr);
+	std::string filenameStr(argv[1]);
+	std::ofstream fileout(filenameStr.append(".replace"));
 	std::string line = "";
-	while (std::getline(filein, line))
+	for (; std::getline(filein, line);)
 	{
 		std::size_t found = line.find(s1);
 		if (found != std::string::npos)
@@ -51,16 +41,10 @@ int	main(int argc, char **argv)
 			fileout << "\n";
 	}
 	if (filein.bad())
-	{
-		std::cerr << "Unexpected error ocurred!" << std::endl;
-		return (1);
-	}
-	else if (filein.fail() && !filein.eof())
-	{
-		std::cerr << "Error ocurred when reading from file!" << std::endl;
-		return (1);
-	}
+		return (printErrorAndExit("Unexpected error ocurred!"));
+	else if (!filein.eof())
+		return (printErrorAndExit("Error ocurred when reading from file!"));
 	fileout.close();
 	filein.close();
-	return (0);
+	return (EXIT_SUCCESS);
 }

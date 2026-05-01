@@ -1,4 +1,4 @@
-NAME = replacer
+NAME = harl
 
 SRC_DIR = src
 INC_DIR = includes
@@ -9,7 +9,8 @@ CXXFLAGS    = -Wall -Wextra -Werror -std=c++98 -pedantic
 RM = rm -rf
 INCLUDES  = -I$(INC_DIR)
 
-SRC_FILES = main.cpp
+SRC_FILES = main.cpp \
+		Harl.cpp
 		
 SOURCES = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
