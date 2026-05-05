@@ -1,17 +1,17 @@
 #include <Replacer.hpp>
 
-static int printErrorAndExit(std::string msg)
+static int	printErrorAndExit(std::string msg)
 {
 	std::cerr << msg << std::endl;
 	return (EXIT_FAILURE);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	char *s1;
-	char *s2;
-	size_t pos;
-	size_t len;
+	char	*s1;
+	char	*s2;
+	size_t	pos;
+	size_t	len;
 
 	if (argc != 4)
 		return (printErrorAndExit("Invalid argumants!"));
