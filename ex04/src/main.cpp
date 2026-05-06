@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 	s2 = argv[3];
 	std::ifstream filein(argv[1]);
 	if (!filein.is_open())
-		return (printErrorAndExit("File not exist!"));
+		return (printErrorAndExit("File not exist or no permission!"));
 	pos = 0;
 	len = std::strlen(s1);
 	std::string filenameStr(argv[1]);
@@ -27,16 +27,19 @@ int	main(int argc, char **argv)
 	std::string line = "";
 	for (; std::getline(filein, line);)
 	{
-		std::size_t found = line.find(s1);
-		if (found != std::string::npos)
+		for (size_t i = 0; i < line.length(); i++)
 		{
-			std::string front = line.substr(0, found);
-			std::string rest = line.substr(found + len, line.length());
-			front.append(s2).append(rest);
-			fileout << front;
+			std::size_t found = line.find(s1);
+			if (found != std::string::npos)
+			{
+				std::string front = line.substr(0, found);
+				std::string rest = line.substr(found + len, line.length());
+				front.append(s2).append(rest);
+				i = found + len;
+				line = front;
+			}
 		}
-		else
-			fileout << line;
+		fileout << line;
 		if (!filein.eof())
 			fileout << "\n";
 	}
