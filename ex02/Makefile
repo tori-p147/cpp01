@@ -22,7 +22,7 @@ $(BLD_DIR):
 	mkdir -p $(BLD_DIR)
 
 $(NAME): $(OBJS)
-	$(CXX) $(OBJS) -o $(NAME)
+	$(CXX) $(OBJS) $(CXXFLAGS) -o $(NAME)
 
 clean:
 	@$(RM) $(BLD_DIR)

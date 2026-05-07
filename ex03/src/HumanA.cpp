@@ -1,6 +1,9 @@
 #include <HumanA.hpp>
 
-HumanA::HumanA(std::string newName, Weapon &newWeapon) : name(newName), w(newWeapon) {};
+HumanA::HumanA(std::string newName, Weapon &newWeapon)
+    : w(newWeapon), name(newName)
+{
+}
 
 void HumanA::attack()
 {

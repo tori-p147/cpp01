@@ -22,12 +22,13 @@ int	main(int argc, char **argv)
 		return (printErrorAndExit("File not exist or no permission!"));
 	pos = 0;
 	len = std::strlen(s1);
-	std::string filenameStr(argv[1]);
-	std::ofstream fileout(filenameStr.append(".replace"));
+	std::string out = argv[1];
+	out.append(".replace");
+	std::ofstream fileout(out);
 	std::string line = "";
 	for (; std::getline(filein, line);)
 	{
-		for (size_t i = 0; i < line.length(); i++)
+		for (size_t i = 0; i <= line.length(); i++)
 		{
 			std::size_t found = line.find(s1);
 			if (found != std::string::npos)
